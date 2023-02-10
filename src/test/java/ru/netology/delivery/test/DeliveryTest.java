@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import ru.netology.delivery.data.DataGeneratorTest;
+import ru.netology.delivery.data.DataGenerator;
 
 import java.time.Duration;
 
@@ -24,11 +24,11 @@ public class DeliveryTest {
     @Test
     @DisplayName("Should successful plan and replan meeting")
     void shouldSuccessfulPlanAndReplanMeeting() {
-        var validUser = DataGeneratorTest.Registration.generateUser("ru");
+        var validUser = DataGenerator.Registration.generateUser("ru");
         var daysToAddForFirstMeeting = 4;
-        var firstMeetingDate = DataGeneratorTest.generateDate(daysToAddForFirstMeeting);
+        var firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
         var daysToAddForSecondMeeting = 7;
-        var secondMeetingDate = DataGeneratorTest.generateDate(daysToAddForSecondMeeting);
+        var secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
         $("[data-test-id='city'] input").setValue(validUser.getCity());
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), BACK_SPACE);
         $("[data-test-id='date'] input").setValue(firstMeetingDate);
@@ -44,5 +44,4 @@ public class DeliveryTest {
         $("[data-test-id=replan-notification] .notification__content button").click();
         $("[data-test-id=success-notification] [class=notification__content]").shouldHave(text("Встреча успешно запланирована на\n" + secondMeetingDate));
     }
-}
 }

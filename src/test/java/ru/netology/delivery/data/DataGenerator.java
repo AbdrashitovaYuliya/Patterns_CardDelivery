@@ -8,8 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 
-public class DataGeneratorTest {
-    private DataGeneratorTest() {
+public class DataGenerator {
+    private DataGenerator() {
     }
 
     public static String generateDate(int shift) {
@@ -35,9 +35,9 @@ public class DataGeneratorTest {
         private Registration() {
         }
 
-        public static DataGeneratorTest.UserInfo generateUser(String locale) {
+        public static DataGenerator.UserInfo generateUser(String locale) {
             Faker faker = new Faker(new Locale(locale));
-            return new DataGeneratorTest.UserInfo(
+            return new DataGenerator.UserInfo(
                     faker.address().cityName(),
                     faker.name().fullName(),
                     faker.phoneNumber().phoneNumber());
