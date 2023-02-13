@@ -1,9 +1,11 @@
 package ru.netology.delivery.test;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.chrome.ChromeOptions;
 import ru.netology.delivery.data.DataGenerator;
 
 import java.time.Duration;
@@ -18,8 +20,12 @@ import static org.openqa.selenium.Keys.BACK_SPACE;
 public class DeliveryTest {
     @BeforeEach
     void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        Configuration.browserCapabilities = options;
         open("http://localhost:9999");
     }
+
 
     @Test
     @DisplayName("Should successful plan and replan meeting")
